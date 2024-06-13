@@ -22,5 +22,9 @@ for column in df.columns:
     else:
         df[column] = df[column].fillna(df[column].mean())
 
+# drop row/column if every cell in it is empty
+df.dropna(axis=0, how='all', inplace=True)
+df.dropna(axis=1, how='all', inplace=True)
+
 # Save the cleaned data to a new Excel file
 df.to_excel('cleaned_file_path.xlsx', index=False)
