@@ -5,7 +5,7 @@ filename = 'champions.xlsx'
 # Load the data from an Excel file
 df = pd.read_excel(filename)
 
-# Removing Duplicates
+# Removing duplicates
 df = df.drop_duplicates()
 
 # Removing Non-Printable Characters
