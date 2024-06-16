@@ -1,9 +1,26 @@
 import pandas as pd
 import re
+# Convert numeric words to numbers
+from word2number import w2n
 
 filename = 'champions.xlsx'
 # Load the data from an Excel file
 df = pd.read_excel(filename)
+
+
+# convert textual numbers to numbers
+def text_to_number(text):
+    if isinstance(text, str):
+        try:
+            return w2n.word_to_num(text)
+        except ValueError:
+            return text
+    return text
+
+
+for column in df.columns:
+    if df[column].dtype == 'object':
+        df[column] = df[column].apply(text_to_number)
 
 # Removing duplicates
 df = df.drop_duplicates()
